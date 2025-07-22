@@ -2,15 +2,57 @@ import { generateObject } from 'ai'
 import { groq } from '@ai-sdk/groq'
 import { z } from 'zod'
 import { NextRequest, NextResponse } from 'next/server'
+import { aiActionsSchema, validateOrigin, corsHeaders } from '@/lib/validation'
+
+export async function OPTIONS(request: NextRequest) {
+  const origin = request.headers.get('origin')
+  return new NextResponse(null, {
+    status: 200,
+    headers: corsHeaders(origin)
+  })
+}
 
 export async function POST(req: NextRequest) {
+  const origin = req.headers.get('origin')
+  
   try {
-    const { userQuery, domContext } = await req.json()
+    if (!validateOrigin(req)) {
+      return NextResponse.json(
+        { error: 'Forbidden origin' },
+        { status: 403, headers: corsHeaders(origin) }
+      )
+    }
+
+    const contentType = req.headers.get('content-type')
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json(
+        { error: 'Content-Type must be application/json' },
+        { status: 400, headers: corsHeaders(origin) }
+      )
+    }
+
+    const body = await req.json().catch(() => null)
+    if (!body) {
+      return NextResponse.json(
+        { error: 'Invalid JSON' },
+        { status: 400, headers: corsHeaders(origin) }
+      )
+    }
+
+    const validationResult = aiActionsSchema.safeParse(body)
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid input', details: validationResult.error.issues },
+        { status: 400, headers: corsHeaders(origin) }
+      )
+    }
+
+    const { userQuery, domContext } = validationResult.data
 
     if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'your_groq_api_key_here') {
       return NextResponse.json(
         { error: 'Groq API key not configured' },
-        { status: 500 }
+        { status: 500, headers: corsHeaders(origin) }
       )
     }
 
@@ -66,13 +108,23 @@ Return a confidence score (0-1) and reasoning for your plan.`
       })
     })
 
-    return NextResponse.json(result.object)
+    return NextResponse.json(result.object, {
+      headers: corsHeaders(origin)
+    })
 
   } catch (error) {
     console.error('AI actions API error:', error)
+    
+    if (error instanceof Error && error.message.includes('rate limit')) {
+      return NextResponse.json(
+        { error: 'API rate limit exceeded. Please try again later.' },
+        { status: 429, headers: corsHeaders(origin) }
+      )
+    }
+    
     return NextResponse.json(
       { error: 'Failed to generate action plan' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders(origin) }
     )
   }
 } 

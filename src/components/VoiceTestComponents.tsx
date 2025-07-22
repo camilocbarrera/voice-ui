@@ -93,23 +93,23 @@ export function VoiceTestComponents() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       <Card 
         data-voice="toggle notifications"
         data-voice-intents="notifications, toggle notifications, enable notifications, disable notifications"
         data-voice-action="toggle"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Bell className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
             Notifications
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Control your notification preferences
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <div className="flex items-center justify-between">
             <Label htmlFor="notifications" className="text-sm">
               Enable notifications
@@ -134,16 +134,16 @@ export function VoiceTestComponents() {
         data-voice-action="toggle"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            {isMuted ? <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" /> : <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />}
             Audio Control
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Manage audio settings
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Button 
             onClick={handleMuteToggle} 
             variant={isMuted ? "destructive" : "default"}
@@ -160,16 +160,16 @@ export function VoiceTestComponents() {
         data-voice-action="toggle"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            {isPlaying ? <PauseCircle className="w-5 h-5" /> : <PlayCircle className="w-5 h-5" />}
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            {isPlaying ? <PauseCircle className="w-4 h-4 sm:w-5 sm:h-5" /> : <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />}
             Media Player
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Control media playback
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Button 
             onClick={handlePlayPause} 
             variant={isPlaying ? "secondary" : "default"}
@@ -186,16 +186,16 @@ export function VoiceTestComponents() {
         data-voice-action="toggle"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            {isVisible ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            {isVisible ? <Eye className="w-4 h-4 sm:w-5 sm:h-5" /> : <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" />}
             Content Visibility
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Toggle content visibility
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Button 
             onClick={handleVisibilityToggle} 
             variant="outline"
@@ -219,16 +219,16 @@ export function VoiceTestComponents() {
         data-voice-action="click"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Heart className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
             Like Counter
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Show some love with voice commands
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <div className="text-center">
             <div className="text-3xl font-bold text-primary">{likeCount}</div>
             <div className="text-sm text-muted-foreground">Likes</div>
@@ -250,16 +250,16 @@ export function VoiceTestComponents() {
         data-voice-action="select"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Settings className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
             Color Selector
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Choose colors with voice commands
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Select onValueChange={handleColorSelect} value={selectedColor}>
             <SelectTrigger>
               <SelectValue placeholder="Select a color" />
@@ -284,18 +284,18 @@ export function VoiceTestComponents() {
         data-voice="write a message"
         data-voice-intents="write message, type message, send message, compose message"
         data-voice-action="focus"
-        className="hover:shadow-lg transition-shadow md:col-span-2"
+        className="hover:shadow-lg transition-shadow sm:col-span-2 lg:col-span-2"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <MessageSquare className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
             Message Composer
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Write and send messages
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <div className="space-y-2">
             <Label htmlFor="message">Your message</Label>
             <Textarea 
@@ -327,25 +327,25 @@ export function VoiceTestComponents() {
         data-voice-action="rate"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Star className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <Star className="w-4 h-4 sm:w-5 sm:h-5" />
             Star Rating
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Rate with voice commands
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <div className="flex justify-center gap-1">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
                 onClick={() => handleRating(star)}
-                className="focus:outline-none"
+                className="focus:outline-none p-1"
               >
                 <Star 
-                  className={`w-6 h-6 ${
+                  className={`w-5 h-5 sm:w-6 sm:h-6 ${
                     star <= rating 
                       ? 'fill-yellow-400 text-yellow-400' 
                       : 'text-gray-300'
@@ -368,16 +368,16 @@ export function VoiceTestComponents() {
         data-voice-action="click"
         className="hover:shadow-lg transition-shadow"
       >
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <User className="w-5 h-5" />
+        <CardHeader className="pb-2 sm:pb-3">
+          <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+            <User className="w-4 h-4 sm:w-5 sm:h-5" />
             User Profile
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Access user information
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Button 
             onClick={() => setShowDialog(true)}
             variant="outline"

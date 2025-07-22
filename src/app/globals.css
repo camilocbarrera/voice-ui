@@ -206,3 +206,24 @@
   pointer-events: none;
   opacity: 0.7;
 }
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  /* Ensure touch targets are at least 44px */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text legibility on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Improve scroll behavior */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}

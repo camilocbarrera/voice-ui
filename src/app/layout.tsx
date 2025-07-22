@@ -16,8 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VoiceUI ",
-  description: "voice-controlled user interface",
+  title: "VoiceUI",
+  description: "AI-powered voice-controlled user interface with natural language commands",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" }
+  ]
 };
 
 export default function RootLayout({
