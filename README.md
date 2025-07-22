@@ -1,63 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Voice UI
 
-## Voice UI with AI-Powered Actions
+Just playing around to see if an LLM can control DOM elements.
 
-A modern voice-controlled user interface that combines traditional voice commands with AI-powered natural language processing using Groq.
+## What is DOM?
 
-### Features
+The DOM (Document Object Model) is kinda like LEGO for websites every button, image, text box, or menu is its own little block. The idea is to use an LLM to find and control those blocks for you using voice or text.
 
-- **Traditional Voice Commands**: Use predefined voice commands with `data-voice` attributes
-- **AI-Powered Natural Language**: Speak naturally and let AI figure out the actions
-- **Hybrid Approach**: Falls back to traditional commands if AI processing fails
-- **Real-time DOM Context**: AI understands the current page structure dynamically
+## How It Works
 
-### AI Setup
-
-To enable AI-powered voice commands:
-
-1. Get a Groq API key from [console.groq.com](https://console.groq.com)
-2. Copy `.env.local.example` to `.env.local`
-3. Add your API key: `GROQ_API_KEY=your_api_key_here`
-
-### Example AI Commands
-
-Try these natural language commands:
-- "Send a message that says Hi Mom"
-- "Give it 1 star and leave bad feedback" 
-- "Toggle notifications and play music"
-- "Hide content and mute audio"
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```mermaid
+flowchart TD
+    A[Speak into microphone] --> B[Record audio]
+    B --> C[Send to Whisper API]
+    C --> D[Get text transcript]
+    D --> E{Choose processing}
+    E -->|Simple commands| F[Find data-voice elements]
+    E -->|Natural language| G[Send to AI]
+    F --> H[Execute action]
+    G --> I[Analyze page elements]
+    I --> J[Create action plan]
+    J --> K[Execute multiple actions]
+    H --> L[Done]
+    K --> L
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Get API keys:
+   - [OpenAI](https://platform.openai.com) for speech recognition
+   - [Groq](https://console.groq.com) for AI commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Create `.env.local`:
+```bash
+OPENAI_API_KEY=your_openai_key
+GROQ_API_KEY=your_groq_key
+```
 
-## Learn More
+3. Install and run:
+```bash
+pnpm install
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Simple commands:** Add `data-voice="play music"` to elements
+```html
+<button data-voice="play music">Play</button>
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Natural language:** Just speak normally
+- "Send a message saying hello"
+- "Play music and turn on notifications"
+- "Select blue color"
 
-## Deploy on Vercel
+The AI figures out which buttons to click and what to type.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## What's Inside
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Speech to text:** OpenAI Whisper
+- **AI Inference:** Groq LLaMA  
+- **Web interface:** Next.js + Tailwind
+- **Components:** shadcn/ui
