@@ -1,5 +1,32 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Voice UI with AI-Powered Actions
+
+A modern voice-controlled user interface that combines traditional voice commands with AI-powered natural language processing using Groq.
+
+### Features
+
+- **Traditional Voice Commands**: Use predefined voice commands with `data-voice` attributes
+- **AI-Powered Natural Language**: Speak naturally and let AI figure out the actions
+- **Hybrid Approach**: Falls back to traditional commands if AI processing fails
+- **Real-time DOM Context**: AI understands the current page structure dynamically
+
+### AI Setup
+
+To enable AI-powered voice commands:
+
+1. Get a Groq API key from [console.groq.com](https://console.groq.com)
+2. Copy `.env.local.example` to `.env.local`
+3. Add your API key: `GROQ_API_KEY=your_api_key_here`
+
+### Example AI Commands
+
+Try these natural language commands:
+- "Send a message that says Hi Mom"
+- "Give it 1 star and leave bad feedback" 
+- "Toggle notifications and play music"
+- "Hide content and mute audio"
+
 ## Getting Started
 
 First, run the development server:

@@ -1,0 +1,1 @@
+export { useEnhancedVoice as useVoice } from '../lib/enhanced-voice-context' 
