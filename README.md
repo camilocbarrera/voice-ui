@@ -2,6 +2,8 @@
 
 Just playing around to see if an LLM can control DOM elements.
 
+![Voice UI Demo](public/voice-ui-demo.gif)
+
 ## What is DOM?
 
 The DOM (Document Object Model) is kinda like LEGO for websites every button, image, text box, or menu is its own little block. The idea is to use an LLM to find and control those blocks for you using voice or text.
